@@ -1,4 +1,5 @@
 import { Table } from 'antd';
+import { employees } from '../dummyfile';
 
 const columns = [
   {
@@ -22,32 +23,11 @@ const columns = [
   }
 ]
 
-const data = [
-  {
-    id: '1',
-    name: 'John Brown',
-    annualLeave: 2,
-    sickLeave: 10
-  },
-  {
-    id: '2',
-    name: 'Jim Green',
-    annualLeave: 5,
-    sickLeave: 14
-  },
-  {
-    id: '3',
-    name: 'Joe Black',
-    annualLeave: 10,
-    sickLeave: 6
-  }
-]
-
 const Summary = () => {
   return (
     <>
       <h2>Leave Balance</h2>
-      <Table columns={columns} dataSource={data} size="small"></Table>
+      <Table columns={columns} dataSource={employees} size="small"></Table>
     </>
   );
 }
