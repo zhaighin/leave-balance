@@ -1,9 +1,8 @@
 import './App.css';
-import { Layout } from 'antd';
-import Summary from './summary';
-import Topbar from './topbar';
+import Main from './main';
 import Absence from './absence';
 import Profiles from './profiles';
+import Summary from './summary';
 
 import {
   createBrowserRouter,
@@ -11,36 +10,28 @@ import {
 } from 'react-router-dom';
 
 
-const { Header, Content, Footer } = Layout;
-
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Summary />,
-  },
-  {
-    path: 'leave',
-    element: <Absence />
-  },
-  {
-    path: 'profiles',
-    element: <Profiles />,
-  },
+    element: <Main />,
+    children: [{
+      path: 'leave',
+      element: <Absence />
+    },
+    {
+      path: 'profiles',
+      element: <Profiles />,
+    }, {
+      path: '',
+      element: <Summary />
+    }
+    ]
+  }
 ])
 
 const App = () => {
   return (
-    <Layout className='app-layout'>
-      <Header>
-        <Topbar></Topbar>
-      </Header>
-      <Content className='app-content'>
-        <RouterProvider router={router} />
-      </Content>
-      <Footer>
-        Copyright © 2022 Name
-      </Footer>
-    </Layout>
+    <RouterProvider router={router} />
   );
 }
 

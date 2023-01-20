@@ -1,5 +1,10 @@
-import { Table } from 'antd';
+import { Table, Button } from 'antd';
 import { employees } from '../dummyfile';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+
+import './summary.css';
+
 
 const columns = [
   {
@@ -26,8 +31,14 @@ const columns = [
 const Summary = () => {
   return (
     <>
-      <h2>Leave Balance</h2>
-      <Table columns={columns} dataSource={employees} size="small"></Table>
+      <div className='summary-header'>
+        <h2>Leave Balance</h2>
+        <div>
+          <Button className='summary-btn' type='primary'>Apply for leave</Button>
+          <Button className='summary-btn' icon={<FontAwesomeIcon icon={faDownload}/>}>Download CSV</Button>
+        </div>
+      </div>
+      <Table columns={columns} dataSource={employees} size='small'></Table>
     </>
   );
 }

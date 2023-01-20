@@ -1,6 +1,7 @@
-import { Table } from 'antd';
+import { Table, Button } from 'antd';
 import _ from 'lodash';
 import moment from 'moment';
+import './profiles.css'
 
 const Profiles = () => {
 
@@ -50,12 +51,12 @@ const Profiles = () => {
             hiredDate: '2021-03-25'
         }
     ];
-    
+
     // calculate the years and months since the employee started
     _.each(data, (employee) => {
         let hired = moment(employee.hiredDate);
         var current = moment();
-        
+
         // get years
         var years = current.diff(hired, 'year');
         hired.add(years, 'years');
@@ -70,7 +71,10 @@ const Profiles = () => {
 
     return (
         <>
-            <h2>Employee Profiles</h2>
+            <div className='profiles-header'>
+                <h2>Employee Profiles</h2>
+                <Button className='summary-btn' type='primary'>Add new employee</Button>
+            </div>
             <Table columns={columns} dataSource={data} size="small"></Table>
         </>
     );

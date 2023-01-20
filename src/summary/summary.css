@@ -1,0 +1,9 @@
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-btn {
+    margin: 1px;
+}
