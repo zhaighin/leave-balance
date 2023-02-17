@@ -1,9 +1,3 @@
-<<<<<<< Updated upstream
-import { Table, Button } from 'antd';
-import _ from 'lodash';
-import moment from 'moment';
-import './profiles.css'
-=======
 import { Table, Button, Tooltip } from 'antd';
 import _ from 'lodash';
 import moment from 'moment';
@@ -11,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './profiles.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
->>>>>>> Stashed changes
+
 
 const Profiles = () => {
     const columns = [

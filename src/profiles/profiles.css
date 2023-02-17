@@ -2,12 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-<<<<<<< Updated upstream
-=======
 }
 
 .employee-details-button {
     display: flex;
     gap: 8px;
->>>>>>> Stashed changes
 }

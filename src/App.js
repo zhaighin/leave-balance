@@ -1,15 +1,8 @@
 import './App.css';
 import Main from './main';
 import Absence from './absence';
-<<<<<<< Updated upstream
-import Profiles from './profiles';
-import Summary from './summary';
-=======
 import { Profiles, Profile } from './profiles';
 import Summary from './summary';
-
->>>>>>> Stashed changes
-
 import {
   createBrowserRouter,
   RouterProvider
@@ -28,12 +21,9 @@ const router = createBrowserRouter([
       path: 'profiles',
       element: <Profiles />,
     }, {
-<<<<<<< Updated upstream
-=======
       path: 'profile',
       element: <Profile />
-    },{
->>>>>>> Stashed changes
+    }, {
       path: '',
       element: <Summary />
     }
