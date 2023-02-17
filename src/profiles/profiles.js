@@ -40,10 +40,10 @@ const Profiles = () => {
             render: () => (
                 <>
                     <Tooltip title="Edit">
-                        <Button type="text" icon={<FontAwesomeIcon icon={faPencil}/>}></Button>
+                        <Button type="text" icon={<FontAwesomeIcon icon={faPencil} />}></Button>
                     </Tooltip>
                     <Tooltip title="Delete">
-                        <Button type="text" icon={<FontAwesomeIcon icon={faTrash}/>}></Button>
+                        <Button type="text" icon={<FontAwesomeIcon icon={faTrash} />}></Button>
                     </Tooltip>
                 </>
             ),
@@ -90,13 +90,9 @@ const Profiles = () => {
         <>
             <div className='profiles-header'>
                 <h2>Employee Profiles</h2>
-<<<<<<< Updated upstream
-                <Button className='summary-btn' type='primary'>Add new employee</Button>
-=======
                 <Link to={"/profile"}>
                     <Button className='summary-btn' type='primary'>Add new employee</Button>
                 </Link>
->>>>>>> Stashed changes
             </div>
             <Table columns={columns} dataSource={data} size="small"></Table>
         </>
