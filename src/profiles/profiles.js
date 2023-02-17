@@ -1,10 +1,19 @@
+<<<<<<< Updated upstream
 import { Table, Button } from 'antd';
 import _ from 'lodash';
 import moment from 'moment';
 import './profiles.css'
+=======
+import { Table, Button, Tooltip } from 'antd';
+import _ from 'lodash';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
+import './profiles.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
+>>>>>>> Stashed changes
 
 const Profiles = () => {
-
     const columns = [
         {
             title: 'ID',
@@ -30,6 +39,20 @@ const Profiles = () => {
             title: 'Resign Date',
             dataIndex: 'resignDate',
             key: 'resignDate'
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: () => (
+                <>
+                    <Tooltip title="Edit">
+                        <Button type="text" icon={<FontAwesomeIcon icon={faPencil}/>}></Button>
+                    </Tooltip>
+                    <Tooltip title="Delete">
+                        <Button type="text" icon={<FontAwesomeIcon icon={faTrash}/>}></Button>
+                    </Tooltip>
+                </>
+            ),
         }
     ]
 
@@ -73,7 +96,13 @@ const Profiles = () => {
         <>
             <div className='profiles-header'>
                 <h2>Employee Profiles</h2>
+<<<<<<< Updated upstream
                 <Button className='summary-btn' type='primary'>Add new employee</Button>
+=======
+                <Link to={"/profile"}>
+                    <Button className='summary-btn' type='primary'>Add new employee</Button>
+                </Link>
+>>>>>>> Stashed changes
             </div>
             <Table columns={columns} dataSource={data} size="small"></Table>
         </>

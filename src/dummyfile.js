@@ -18,3 +18,5 @@ export const employees = [
       sickLeave: 6
     }
 ]
+// mongodb
+// password: L6XG1j1i9ozRVEB1
