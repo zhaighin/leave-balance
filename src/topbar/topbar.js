@@ -12,7 +12,7 @@ const items = [
         icon: <FontAwesomeIcon icon={faHouse} />
     },
     {
-        label: (<Link to={`leave`}>Leave</Link>),
+        label: (<Link to={`leave-history`}>Leave</Link>),
         key: 'leave',
         icon: <FontAwesomeIcon icon={faClock} />
     },

@@ -2,7 +2,7 @@ import './App.css';
 import Main from './main';
 import Absence from './absence';
 import { Profiles, Profile } from './profiles';
-import Summary from './summary';
+import { Summary, LeaveHistory } from './summary';
 import {
   createBrowserRouter,
   RouterProvider
@@ -26,6 +26,9 @@ const router = createBrowserRouter([
     }, {
       path: '',
       element: <Summary />
+    }, {
+      path: 'leave-history',
+      element: <LeaveHistory />
     }
     ]
   }

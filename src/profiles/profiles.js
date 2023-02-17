@@ -1,4 +1,4 @@
-import { Table, Button, Tooltip } from 'antd';
+import { Table, Button, Tooltip, Popconfirm } from 'antd';
 import _ from 'lodash';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
@@ -40,10 +40,20 @@ const Profiles = () => {
             render: () => (
                 <>
                     <Tooltip title="Edit">
-                        <Button type="text" icon={<FontAwesomeIcon icon={faPencil} />}></Button>
+                        <Link to={"/profile"}>
+                            <Button type="text" icon={<FontAwesomeIcon icon={faPencil} />}></Button>
+                        </Link>
                     </Tooltip>
                     <Tooltip title="Delete">
-                        <Button type="text" icon={<FontAwesomeIcon icon={faTrash} />}></Button>
+                        <Popconfirm
+                            title="Delete employee"
+                            description="Are you sure to delete the employee?"
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <Button type="text" icon={<FontAwesomeIcon icon={faTrash} />}></Button>
+                        </Popconfirm>
+
                     </Tooltip>
                 </>
             ),

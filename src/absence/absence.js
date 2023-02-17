@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { DatePicker, Form, Input, Select, Card, Button, Statistic, Row, Col } from 'antd';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 // importing css
 import './absence.css';
@@ -94,11 +95,12 @@ const Absence = () => {
                     <Input />
                 </Form.Item>
             </Form>
-            <div className='leave-details-button'>
-                <Button type="primary">Save</Button>
-                <Button>Cancel</Button>
-            </div>
-
+            <Link to={'/'}>
+                <div className='leave-details-button'>
+                    <Button type="primary">Save</Button>
+                    <Button>Cancel</Button>
+                </div>
+            </Link>
         </>
     );
 }
