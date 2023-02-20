@@ -9,6 +9,5 @@
 }
 
 .search-leave-history-button {
-    display: flex;
-    gap: 8px;
+    margin: 0 8px;
 }

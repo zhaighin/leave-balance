@@ -1,14 +1,16 @@
 
 import { Table, Button, Card, Form, Select, Tooltip, Popconfirm } from 'antd';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faL, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 // import data
-import { employees } from '../dummyfile';
+import { employees, leaveHistory } from '../dummyfile';
 import './summary.css';
 
 const LeaveHistory = () => {
+    const [history, setHistory] = useState(leaveHistory);
 
     const employeeList = employees.map((employee) => {
         return {
@@ -103,27 +105,48 @@ const LeaveHistory = () => {
         }
     ]
 
+    const formRef = React.useRef(null);
+
+    const onSearch = (values) => {
+        const { name, type } = values;
+
+        var filterList = leaveHistory.filter((history) => {
+            // check employee name
+            var isEmployee = name ? history.name === name : true;
+            var isType = type ? history.type === type : true;
+            return isEmployee && isType;
+        })
+
+        setHistory(filterList);
+    }
+
+    const onReset = () => {
+        formRef.current?.resetFields();
+        setHistory(leaveHistory);
+    }
+
     return (
         <>
             <h2>Leave Application History</h2>
             <Card title="Search" size="small">
-                <Form name="basic" layout="horizontal" style={{ maxWidth: 400 }}>
-                    <Form.Item label="Name" name="employeename">
-                        <Select showSearch options={employeeList} />
+                <Form name="basic" layout="horizontal" style={{ maxWidth: 400 }} onFinish={onSearch} ref={formRef}>
+                    <Form.Item label="Name" name="name">
+                        <Select showSearch options={employeeList} allowClear />
                     </Form.Item>
                     <Form.Item label="Type" name="type">
                         <Select
                             options={LEAVE_TYPE}
+                            allowClear
                         />
                     </Form.Item>
+                    <Form.Item>
+                        <Button htmlType="submit" type="primary" className='search-leave-history-button'>Search</Button>
+                        <Button htmlType="button" onClick={onReset}>Reset</Button>
+                    </Form.Item>
                 </Form>
-                <div className='search-leave-history-button'>
-                    <Button type="primary">Search</Button>
-                    <Button>Reset</Button>
-                </div>
             </Card>
             <br />
-            <Table columns={columns} size='small'></Table>
+            <Table columns={columns} size='small' dataSource={history}></Table>
 
         </>
     )

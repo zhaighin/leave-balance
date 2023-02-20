@@ -66,6 +66,10 @@ const Absence = () => {
         })
     }
 
+    const onFinish = (values) => {
+        console.log(values);
+    }
+
     return (
         <>
             <h2>Leave Details</h2>
@@ -79,11 +83,17 @@ const Absence = () => {
                     </Col>
                 </Row>
             </Card>
-            <Form name="basic" layout="vertical">
-                <Form.Item label="Employee Name" name="employeename">
+            <Form name="basic" layout="vertical" onFinish={onFinish} initialValues={{ type: 'al', reason: '' }}>
+                <Form.Item label="Employee Name" name="name" rules={[{
+                    required: true,
+                    message: 'Please input employee name'
+                }]}>
                     <Select showSearch options={employeeList} onChange={refreshBalance} />
                 </Form.Item>
-                <Form.Item label="Leave Dates" name="date">
+                <Form.Item label="Leave Dates" name="date" rules={[{
+                    required: true,
+                    message: 'Please input leave dates'
+                }]}>
                     <RangePicker />
                 </Form.Item>
                 <Form.Item label="Type" name="type">
@@ -94,13 +104,14 @@ const Absence = () => {
                 <Form.Item label="Reason" name="reason">
                     <Input />
                 </Form.Item>
+                <Form.Item>
+                    {/* <Link to={'/'}> */}
+                        <Button htmlType="submit" type="primary" className='leave-details-button'>Save</Button>
+                        <Button>Cancel</Button>
+                    {/* </Link> */}
+                </Form.Item>
             </Form>
-            <Link to={'/'}>
-                <div className='leave-details-button'>
-                    <Button type="primary">Save</Button>
-                    <Button>Cancel</Button>
-                </div>
-            </Link>
+
         </>
     );
 }

@@ -18,5 +18,17 @@ export const employees = [
       sickLeave: 6
     }
 ]
+
+export const leaveHistory = [
+  {
+    id: 1,
+    name: 'John Brown', 
+    type: 'al',
+    from: '2022-02-22',
+    to: '2022-02-23',
+    day: 1,
+    createdOn: '2022-02-20'
+  }
+]
 // mongodb
 // password: L6XG1j1i9ozRVEB1
