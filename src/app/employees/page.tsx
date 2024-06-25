@@ -1,12 +1,18 @@
+'use client';
+
 import { Box, Button, Card, CardContent, Divider, Grid, IconButton, InputAdornment, InputBase, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Toolbar, Typography } from "@mui/material";
 import Paper from '@mui/material/Paper';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { AgGridReact } from 'ag-grid-react';
+import { useState } from "react";
+import './employee.css'
+import { ColDef, GridOptions } from "ag-grid-community";
 
 function createData(
   name: string,
-  hireDate: Date,
+  hireDate: string,
   employmentStatus: string,
   position: string,
   location: string,
@@ -15,15 +21,47 @@ function createData(
 }
 
 const rows = [
-  createData('Frozen yoghurt', new Date(), 'Full Time', 'Yogurt Barista', 'Icon City'),
-  createData('Ice cream sandwich', new Date(), 'Part Time', 'Yogurt Barista', 'Icon City'),
-  createData('Eclair', new Date(), 'Part Time', 'Yogurt Barista', 'Gurney'),
-  createData('Cupcake', new Date(), 'Part Time', 'Supervisor', 'Gurney'),
-  createData('Gingerbread', new Date(), 'Full Time', 'Manager', 'Icon City')
+  createData('Frozen yoghurt', new Date().toString(), 'Full Time', 'Yogurt Barista', 'Icon City'),
+  createData('Ice cream sandwich', new Date().toString(), 'Part Time', 'Yogurt Barista', 'Icon City'),
+  createData('Eclair', new Date().toString(), 'Part Time', 'Yogurt Barista', 'Gurney'),
+  createData('Cupcake', new Date().toString(), 'Part Time', 'Supervisor', 'Gurney'),
+  createData('Gingerbread', new Date().toString(), 'Full Time', 'Manager', 'Icon City')
 ];
 
 
 export default function Employees() {
+
+  const [quickFilterText, setQuickFilterText] = useState<string>("");
+
+  const rowData = [
+    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
+    { make: "Ford", model: "F-Series", price: 33850, electric: false },
+    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
+  ];
+
+  // Column Definitions: Defines the columns to be displayed.
+  const colDefs: ColDef[] = [
+    { field: "name" },
+    { field: "hireDate" },
+    { field: "employmentStatus" },
+    { field: "position" },
+    { field: "location" }
+  ]
+
+  const gridOptions: GridOptions = {
+    autoSizeStrategy: {
+      type: 'fitGridWidth',
+      defaultMinWidth: 100
+    },
+    columnDefs: colDefs
+  }
+
+  const onSearch = (event: any) => {
+    console.log(event.target.value);
+    setQuickFilterText(event.target.value);
+  }
+
+
   return (
     <Box>
       <Toolbar>
@@ -38,7 +76,7 @@ export default function Employees() {
       </Toolbar>
       <Box component="section" >
         <Toolbar>
-          <Box >
+          <Box>
             <Card variant="outlined">
               <CardContent>
                 <Typography variant="overline" gutterBottom>
@@ -50,7 +88,6 @@ export default function Employees() {
 
               </CardContent>
             </Card>
-
           </Box>
         </Toolbar>
         <Toolbar>
@@ -70,6 +107,7 @@ export default function Employees() {
                   }}
                   variant="outlined"
                   fullWidth
+                  onChange={onSearch}
                 />
               </Grid>
             </Grid>
@@ -80,43 +118,16 @@ export default function Employees() {
         </Toolbar>
 
         <Box component="section" sx={{ p: 3 }}>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <EnhancedTableHead
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+          <div
+            className="ag-theme-quartz-dark" // applying the grid theme
+            style={{ height: 500 }} // the grid will fill the size of the parent container
+          >
+            <AgGridReact
+              rowData={rows}
+              gridOptions={gridOptions}
+              quickFilterText={quickFilterText}
             />
-              <TableHead>
-                <TableRow>
-                  <TableCell>Employees</TableCell>
-                  <TableCell>Hire Date</TableCell>
-                  <TableCell>Employment Status</TableCell>
-                  <TableCell>Position</TableCell>
-                  <TableCell>Location</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow
-                    key={row.name}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell>{row.hireDate.toString()}</TableCell>
-                    <TableCell>{row.employmentStatus}</TableCell>
-                    <TableCell>{row.position}</TableCell>
-                    <TableCell>{row.location}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          </div>
         </Box>
       </Box>
 

@@ -5,6 +5,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/theme';
 import "./globals.css";
 import Header from './header';
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-quartz.min.css";
 
 
 export default function RootLayout({
@@ -19,7 +21,7 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
-            <Header/>
+            <Header />
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
