@@ -7,8 +7,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/theme';
 import "./globals.css";
 import Header from './header';
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-quartz.min.css";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
